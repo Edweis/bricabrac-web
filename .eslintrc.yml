@@ -23,6 +23,8 @@ plugins:
   - '@typescript-eslint/eslint-plugin'
 rules:
   react/jsx-filename-extension: off
+  react/jsx-one-expression-per-line: off
+  react-hooks/exhaustive-deps: off
   '@typescript-eslint/explicit-module-boundary-types': off
   jsx-a11y/anchor-is-valid: warn
   prettier/prettier: ["error", { "singleQuote": true, "trailingComma": "all" }]

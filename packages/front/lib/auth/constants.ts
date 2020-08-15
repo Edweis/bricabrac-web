@@ -6,7 +6,7 @@ export default {
   },
   apiGateway: {
     REGION: AWS_SINGAPORE_REGION,
-    URL: 'YOUR_API_GATEWAY_URL',
+    URL: 'https://5zythygl31.execute-api.ap-southeast-1.amazonaws.com/',
   },
   cognito: {
     REGION: AWS_SINGAPORE_REGION,

@@ -1,0 +1,15 @@
+# inspired from https://www.codegigs.app/how-to-cognito-user-pool-using-serverless/
+service: api
+provider:
+  name: aws
+  stage: ${opt:stage, 'stage'}
+  region: ap-southeast-1
+  runtime: nodejs12.x
+
+functions:
+  health:
+    handler: functions/health
+    events:
+      - http:
+          path: health
+          method: get

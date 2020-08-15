@@ -1,4 +1,7 @@
 {
   "name": "auth",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "serverless-stack-output": "^0.2.3"
+  }
 }
