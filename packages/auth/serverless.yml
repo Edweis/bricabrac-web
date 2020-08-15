@@ -1,0 +1,50 @@
+# inspired from https://www.codegigs.app/how-to-cognito-user-pool-using-serverless/
+service: authentification
+provider:
+  name: aws
+  stage: ${opt:stage, 'stage'}
+  region: ap-southeast-1
+
+custom:
+  output:
+    file: output.yaml
+
+plugins:
+  - serverless-stack-output
+
+resources:
+  Resources:
+    CognitoUserPool:
+      Type: AWS::Cognito::UserPool
+      Properties:
+        UserPoolName: ${self:provider.stage}-auth-user-pool
+        UsernameAttributes:
+          - email
+        AutoVerifiedAttributes:
+          - email
+
+    CognitoUserPoolClient:
+      Type: AWS::Cognito::UserPoolClient
+      Properties:
+        # Generate an app client name based on the stage
+        ClientName: ${self:provider.stage}-auth-user-pool-client
+        UserPoolId: !Ref CognitoUserPool
+        ExplicitAuthFlows:
+          - ADMIN_NO_SRP_AUTH
+        GenerateSecret: false
+        RefreshTokenValidity: 30
+
+  Outputs:
+    UserPoolId:
+      Value: !Ref CognitoUserPool
+    UserPoolClientId:
+      Value: !Ref CognitoUserPoolClient
+
+
+  # IdentityPoolId:
+  #   Value: !Ref CognitoIdentityPool
+  #
+  # CognitoAuthRole:
+  #   Value: !Ref CognitoAuthRole
+  #   Export:
+  #     Name: YTTest-ExtCognitoAuthRole-${self:custom.stage}

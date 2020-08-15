@@ -20,6 +20,12 @@
     "husky": "^4.2.5",
     "prettier": "^2.0.5",
     "prettier-eslint": "^11.0.0",
-    "lerna": "^3.22.1"
+    "lerna": "^3.22.1",
+    "serverless-stack-output": "^0.2.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "sh ./scripts/pre-commit.sh"
+    }
   }
 }
