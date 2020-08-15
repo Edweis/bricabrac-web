@@ -27,6 +27,7 @@ rules:
   jsx-a11y/anchor-is-valid: warn
   prettier/prettier: ["error", { "singleQuote": true, "trailingComma": "all" }]
   import/extensions: off
+  import/prefer-default-export: off
   jsx-a11y/label-has-associated-control: off
   jsx-a11y/no-autofocus: off
   '@typescript-eslint/ban-ts-comment': off
