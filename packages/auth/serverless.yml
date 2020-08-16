@@ -18,15 +18,19 @@ resources:
       Type: AWS::Cognito::UserPool
       Properties:
         UserPoolName: ${self:provider.stage}-auth-user-pool
-        UsernameAttributes:
-          - email
-        AutoVerifiedAttributes:
-          - email
+        UsernameAttributes: [email]
+        AutoVerifiedAttributes: [email]
+        Policies:
+          PasswordPolicy:
+            MinimumLength: 8
+            RequireLowercase: false
+            RequireNumbers: false
+            RequireSymbols: false
+            RequireUppercase: false
 
     CognitoUserPoolClient:
       Type: AWS::Cognito::UserPoolClient
       Properties:
-        # Generate an app client name based on the stage
         ClientName: ${self:provider.stage}-auth-user-pool-client
         UserPoolId: !Ref CognitoUserPool
         ExplicitAuthFlows:

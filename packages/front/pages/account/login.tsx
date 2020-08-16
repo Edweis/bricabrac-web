@@ -21,17 +21,23 @@ const validationSchema = yup.object().shape({
 });
 
 export default function SignIn() {
-  const { register, handleSubmit, errors } = useForm<FormData>({
+  const { register, handleSubmit, errors, watch } = useForm<FormData>({
     resolver: yupResolver(validationSchema),
   });
   const [isSignUp, setIsSignUp] = useState(false);
-  const [error, catchError] = useErrorHandler();
-  const signText = isSignUp ? 'up' : 'in';
+
+  // error handling
+  const watchChange = watch(['password', 'email']);
+  const resetErrorFields = [watchChange.password, watchChange.email];
+  const [error, catchError] = useErrorHandler(resetErrorFields);
+
+  // submit
   const onSubmit = handleSubmit((data) => {
     if (isSignUp) signUp(data.email, data.password).catch(catchError);
     else signIn(data.email, data.password).catch(catchError);
   });
 
+  const signText = isSignUp ? 'up' : 'in';
   return (
     <div className="body-container text-center">
       <form className="form-signin" onSubmit={onSubmit}>

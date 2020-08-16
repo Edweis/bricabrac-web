@@ -10,8 +10,8 @@ export default {
   },
   cognito: {
     REGION: AWS_SINGAPORE_REGION,
-    USER_POOL_ID: 'ap-southeast-1_gLJs3GqPG',
-    APP_CLIENT_ID: '7i29tbrjd5s4cpvs12s4t1ip8l',
+    USER_POOL_ID: 'ap-southeast-1_cpnFxrBhd',
+    APP_CLIENT_ID: '6v5df39k2hcdji9qmqi2lpn6n8',
     // IDENTITY_POOL_ID: 'YOUR_IDENTITY_POOL_ID',
   },
 };
