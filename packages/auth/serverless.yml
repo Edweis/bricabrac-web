@@ -1,5 +1,8 @@
 # inspired from https://www.codegigs.app/how-to-cognito-user-pool-using-serverless/
 service: authentification
+aliases:
+  - &MainApiGateway
+    Ref: ApiGatewayRestApi
 plugins:
   - serverless-webpack
   - serverless-stack-output
@@ -17,12 +20,22 @@ custom:
 
 functions:
   preSignUp:
-    handler: ./preSignUp.default
+    handler: preSignUp.default
     events:
       - cognitoUserPool:
           pool: ${self:provider.environment.USER_POOL_NAME}
           trigger: PreSignUp
           existing: true
+  me:
+    handler: me.default
+    events:
+      - http:
+          path: me
+          method: post
+          authorizer:
+            type: COGNITO_USER_POOLS
+            authorizerId:
+              Ref: CognitoAuthorizer
 
 resources:
   Resources:
@@ -49,6 +62,17 @@ resources:
           - ADMIN_NO_SRP_AUTH
         GenerateSecret: false
         RefreshTokenValidity: 30
+
+    CognitoAuthorizer:
+      Type: AWS::ApiGateway::Authorizer
+      Properties:
+        AuthorizerResultTtlInSeconds: 10
+        IdentitySource: method.request.header.Authorization
+        Name: ${self:provider.stage}-cognito-authorizer
+        RestApiId: *MainApiGateway
+        Type: COGNITO_USER_POOLS
+        ProviderARNs:
+          - {"Fn::Join": ["", ["arn:aws:cognito-idp:", {Ref: "AWS::Region"}, ":", {Ref: "AWS::AccountId"}, ":userpool/", Ref: CognitoUserPool]]}
 
   Outputs:
     UserPoolId:
