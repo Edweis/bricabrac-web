@@ -23,6 +23,7 @@
     "yup": "^0.29.3"
   },
   "devDependencies": {
+    "@types/aws-lambda": "^8.10.61",
     "@types/classnames": "^2.2.10",
     "@types/yup": "^0.29.4",
     "serverless-stack-output": "^0.2.3"

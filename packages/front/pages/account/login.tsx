@@ -27,7 +27,7 @@ export default function SignIn() {
   const [isSignUp, setIsSignUp] = useState(false);
 
   // error handling
-  const watchChange = watch(['password', 'email']);
+  const watchChange = watch(['password', 'email', 'confirmation']);
   const resetErrorFields = [watchChange.password, watchChange.email];
   const [error, catchError] = useErrorHandler(resetErrorFields);
 

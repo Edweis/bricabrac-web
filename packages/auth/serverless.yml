@@ -1,25 +1,36 @@
 # inspired from https://www.codegigs.app/how-to-cognito-user-pool-using-serverless/
 service: authentification
+plugins:
+  - serverless-webpack
+  - serverless-stack-output
 provider:
   name: aws
   stage: ${opt:stage, 'stage'}
   region: ap-southeast-1
+  environment:
+    USER_POOL_NAME: ${self:provider.stage}-auth-user-pool
 
 custom:
   output:
     file: output.yaml
 
-plugins:
-  - serverless-stack-output
+functions:
+  preSignUp:
+    handler: ./preSignUp.default
+    events:
+      - cognitoUserPool:
+          pool: ${self:provider.environment.USER_POOL_NAME}
+          trigger: PreSignUp
+          existing: true
 
 resources:
   Resources:
     CognitoUserPool:
       Type: AWS::Cognito::UserPool
       Properties:
-        UserPoolName: ${self:provider.stage}-auth-user-pool
+        UserPoolName: ${self:provider.environment.USER_POOL_NAME}
         UsernameAttributes: [email]
-        AutoVerifiedAttributes: [email]
+        AutoVerifiedAttributes: []
         Policies:
           PasswordPolicy:
             MinimumLength: 8

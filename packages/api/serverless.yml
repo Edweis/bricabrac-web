@@ -1,5 +1,8 @@
 # inspired from https://www.codegigs.app/how-to-cognito-user-pool-using-serverless/
 service: api
+plugins:
+  - serverless-webpack
+
 provider:
   name: aws
   stage: ${opt:stage, 'stage'}
@@ -8,8 +11,8 @@ provider:
 
 functions:
   health:
-    handler: functions/health
+    handler: functions/health.default
     events:
       - http:
           path: health
-          method: get
+          method: GET

@@ -30,11 +30,12 @@ rules:
   prettier/prettier: ["error", { "singleQuote": true, "trailingComma": "all" }]
   import/extensions: off
   import/prefer-default-export: off
+  import/no-unresolved: off # duplciate with typescript
   jsx-a11y/label-has-associated-control: off
   jsx-a11y/no-autofocus: off
   '@typescript-eslint/ban-ts-comment': off
 settings:
   import/resolver:
     node:
-      paths: [components, lib, pages]
+      # paths: [components, lib, pages]
       extensions: [".js", ".jsx", ".ts", ".tsx"]

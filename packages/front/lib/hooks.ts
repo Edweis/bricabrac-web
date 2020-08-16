@@ -5,11 +5,14 @@ export const useErrorHandler = (
 ): [string | null, (error: any) => void] => {
   const [error, setError] = useState<string | null>(null);
   useEffect(() => {
-    if (error != null) setError(null);
+    if (error != null) {
+      console.debug('Reseting errors...', error);
+      setError(null);
+    }
   }, resetDeps || []);
-  const catchError = useCallback(
-    (err: any) => setError(err && err.message),
-    [],
-  );
+  const catchError = useCallback((err: any) => {
+    console.debug('ERROR CAUGHT', err);
+    setError(err && err.message);
+  }, []);
   return [error, catchError];
 };

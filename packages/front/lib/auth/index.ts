@@ -8,5 +8,5 @@ export const signIn = async (email: string, password: string) => {
 
 export const signUp = async (email: string, password: string) => {
   const response = await Auth.signUp({ username: email, password });
-  console.log(response, { user: response.user, email, password });
+  console.log('SIGNED UP!', response);
 };

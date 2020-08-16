@@ -3,5 +3,9 @@
   "private": true,
   "dependencies": {
     "serverless-stack-output": "^0.2.3"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.61",
+    "serverless-webpack": "^5.3.3"
   }
 }
