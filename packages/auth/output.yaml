@@ -1,4 +1,4 @@
-UserPoolClientId: 5ocis31arsi6fptv92po6rirlu
-UserPoolId: ap-southeast-1_7RRjG1FtL
-PreSignUpLambdaFunctionQualifiedArn: 'arn:aws:lambda:ap-southeast-1:441615332532:function:authentification-stage-preSignUp:3'
-ServerlessDeploymentBucketName: authentification-stage-serverlessdeploymentbucket-e1sva6n9h7s6
+UserPoolClientId: 3bfdu5fo22mgdqnk5m9cfp98s2
+UserPoolId: ap-southeast-1_jAdu30S0K
+PreSignUpLambdaFunctionQualifiedArn: 'arn:aws:lambda:ap-southeast-1:441615332532:function:authentification-stage-preSignUp:5'
+ServerlessDeploymentBucketName: authentification-stage-serverlessdeploymentbucket-aeggzkgy9scg

@@ -10,7 +10,6 @@ export default (
       ...event.response,
       autoConfirmUser: true,
       autoVerifyEmail: true,
-      autoVerifyPhone: true,
     },
   };
   context.done(undefined, updatedEvent);

@@ -7,6 +7,7 @@ provider:
   name: aws
   stage: ${opt:stage, 'stage'}
   region: ap-southeast-1
+  runtime: nodejs12.x
   environment:
     USER_POOL_NAME: ${self:provider.stage}-auth-user-pool
 
@@ -30,7 +31,7 @@ resources:
       Properties:
         UserPoolName: ${self:provider.environment.USER_POOL_NAME}
         UsernameAttributes: [email]
-        AutoVerifiedAttributes: []
+        AutoVerifiedAttributes: [email]
         Policies:
           PasswordPolicy:
             MinimumLength: 8

@@ -6,6 +6,7 @@
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.61",
-    "serverless-webpack": "^5.3.3"
+    "serverless-webpack": "^5.3.3",
+    "ts-loader": "^8.0.2"
   }
 }
