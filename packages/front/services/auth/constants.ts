@@ -1,5 +1,6 @@
 const AWS_SINGAPORE_REGION = 'ap-southeast-1';
 export const TOKEN_STORAGE_KEY = 'bricabrac-jwt';
+export const TOKEN_EXPIRE_DAYS = 30;
 export default {
   s3: {
     REGION: AWS_SINGAPORE_REGION,

@@ -1,6 +1,6 @@
 UserPoolClientId: 3bfdu5fo22mgdqnk5m9cfp98s2
 UserPoolId: ap-southeast-1_jAdu30S0K
-MeLambdaFunctionQualifiedArn: 'arn:aws:lambda:ap-southeast-1:441615332532:function:authentification-stage-me:6'
-PreSignUpLambdaFunctionQualifiedArn: 'arn:aws:lambda:ap-southeast-1:441615332532:function:authentification-stage-preSignUp:11'
+MeLambdaFunctionQualifiedArn: 'arn:aws:lambda:ap-southeast-1:441615332532:function:authentification-stage-me:7'
+PreSignUpLambdaFunctionQualifiedArn: 'arn:aws:lambda:ap-southeast-1:441615332532:function:authentification-stage-preSignUp:12'
 ServiceEndpoint: 'https://h9beij9hc9.execute-api.ap-southeast-1.amazonaws.com/stage'
 ServerlessDeploymentBucketName: authentification-stage-serverlessdeploymentbucket-aeggzkgy9scg

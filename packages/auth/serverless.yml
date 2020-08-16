@@ -31,12 +31,21 @@ functions:
     events:
       - http:
           path: me
-          method: post
+          method: GET
+          cors: # FIXME disable once a domain is set
+            origin: '*'
+            headers:
+              - Authorization
+
+            allowCredentials: false
           authorizer:
             type: COGNITO_USER_POOLS
             authorizerId:
               Ref: CognitoAuthorizer
-
+          response: # FIXME disable once a domain is set
+            headers:
+              Access-Control-Allow-Origin: "'*'"
+              Access-Control-Allow-Headers: "'*'"
 resources:
   Resources:
     CognitoUserPool:

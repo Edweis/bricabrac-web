@@ -23,6 +23,7 @@ plugins:
   - '@typescript-eslint/eslint-plugin'
 rules:
   react/jsx-filename-extension: off
+  react/prop-types: off # typescript does it
   react/jsx-one-expression-per-line: off
   react-hooks/exhaustive-deps: off
   '@typescript-eslint/explicit-module-boundary-types': off

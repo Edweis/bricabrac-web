@@ -1,4 +1,5 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useContext } from 'react';
+import { AuthContext } from '../components/AuthProvider';
 
 export const useErrorHandler = (
   resetDeps?: React.DependencyList,
@@ -16,3 +17,4 @@ export const useErrorHandler = (
   }, []);
   return [error, catchError];
 };
+export const useAuth = () => useContext(AuthContext);

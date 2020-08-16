@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers';
 import cn from 'classnames';
-import { signIn, signUp } from '../../lib/auth';
+import { signIn, signUp } from '../../services/auth';
 import { useErrorHandler } from '../../lib/hooks';
 
 type FormData = {
