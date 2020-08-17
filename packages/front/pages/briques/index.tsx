@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Concept, Brick } from '@packages/typings';
 import cn from 'classnames';
+import Head from 'next/head';
 import ProtectRoute from '../../components/ProtectedRoute';
 
 const conceptData: Concept[] = [
@@ -25,6 +26,9 @@ function Briques() {
   }, [selection]);
   return (
     <div>
+      <Head>
+        <title>Briques</title>
+      </Head>
       <h1>Briques - Concepts</h1>
       <div className="row">
         <div className="col-4">

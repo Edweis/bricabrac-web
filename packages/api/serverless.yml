@@ -16,3 +16,21 @@ functions:
       - http:
           path: health
           method: GET
+
+resources:
+  Resources:
+    MainPostgresDb:
+      Type: AWS::RDS::DBInstance
+      Properties:
+        DBName: main
+        DBInstanceIdentifier: main
+        DBInstanceClass: db.t2.micro
+        AllocatedStorage: 20
+        Engine: postgres
+        EngineVersion: 12.3
+        MasterUsername: postgres
+        MasterUserPassword: postgres
+  Outputs:
+    MainPostgresInstanceId:
+      Description: InstanceId of the newly created RDS Instance
+      Value: !Ref MainPostgresDb
