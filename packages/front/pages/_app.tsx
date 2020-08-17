@@ -1,7 +1,8 @@
 import React from 'react';
 import { AppProps } from 'next/app';
-import '../styles/global.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../styles/bootstrap-styles.scss';
+import '../styles/global.scss';
 import AuthProvider from '../components/AuthProvider';
 
 export default function App({ Component, pageProps }: AppProps) {

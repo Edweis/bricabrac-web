@@ -1,18 +1,18 @@
+@import "node_modules/bootstrap/scss/bootstrap";
+
 html,
 body {
   height: 100%;
+  max-width: map-get($grid-breakpoints, 'md');
+  margin: 0 auto;
 }
 
 #__next {
+  // background-color: #0F0;
   height: 100%;
   width: 100%;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-  align-items: center;
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: #f5f5f5;
 }
 
 .body-container {
