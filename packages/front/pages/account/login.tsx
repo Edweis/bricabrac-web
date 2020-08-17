@@ -79,7 +79,7 @@ export default function SignIn() {
           <>
             <label className="sr-only">Password Confirmation</label>
             <input
-              type="confirmation"
+              type="password"
               name="confirmation"
               className={cn('form-control', {
                 'is-invalid': errors.confirmation,
