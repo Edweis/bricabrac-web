@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback, useContext } from 'react';
-import { AuthContext } from '../components/AuthProvider';
+import { AuthContext } from '../components/AuthProvider/context';
 
 export const useErrorHandler = (
   resetDeps?: React.DependencyList,

@@ -3,10 +3,5 @@
   "private": true,
   "dependencies": {
     "http-status-codes": "^1.4.0"
-  },
-  "devDependencies": {
-    "@types/aws-lambda": "^8.10.61",
-    "serverless-webpack": "^5.3.3",
-    "ts-loader": "^8.0.2"
   }
 }

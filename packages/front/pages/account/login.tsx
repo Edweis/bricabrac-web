@@ -3,8 +3,8 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers';
 import cn from 'classnames';
-import { signIn, signUp } from '../../services/auth';
-import { useErrorHandler } from '../../lib/hooks';
+import Link from 'next/link';
+import { useErrorHandler, useAuth } from '../../lib/hooks';
 
 type FormData = {
   email: string;
@@ -16,7 +16,7 @@ const validationSchema = yup.object().shape({
   email: yup.string().required().email(),
   password: yup.string().required().min(8),
   confirmation: yup
-    .mixed()
+    .string()
     .oneOf([yup.ref('password'), ''], 'Passwords must match'),
 });
 
@@ -32,9 +32,10 @@ export default function SignIn() {
   const [error, catchError] = useErrorHandler(resetErrorFields);
 
   // submit
-  const onSubmit = handleSubmit((data) => {
-    if (isSignUp) signUp(data.email, data.password).catch(catchError);
-    else signIn(data.email, data.password).catch(catchError);
+  const auth = useAuth();
+  const onSubmit = handleSubmit(async (data) => {
+    if (isSignUp) auth.signUp(data.email, data.password).catch(catchError);
+    else auth.login(data.email, data.password).catch(catchError);
   });
 
   const signText = isSignUp ? 'up' : 'in';
@@ -48,6 +49,13 @@ export default function SignIn() {
           width="72"
           height="72"
         />
+        {auth.isAuthenticated && (
+          <Link href="/account/me">
+            <button className="btn btn-link" type="button">
+              You are already connected, check your page !
+            </button>
+          </Link>
+        )}
         <h1 className="h3 mb-3 font-weight-normal">Please sign {signText}</h1>
         <label className="sr-only">Email address</label>
         <input
@@ -106,7 +114,11 @@ export default function SignIn() {
           </button>
         </div>
         <button className="btn btn-lg btn-primary btn-block" type="submit">
-          Sign {signText}
+          {auth.loading ? (
+            <span className="spinner-border" role="status" aria-hidden="true" />
+          ) : (
+            `Sign ${signText}`
+          )}
         </button>
         <div className="text-danger">{error}</div>
         <p className="mt-5 mb-3 text-muted">© 2017-2020</p>
