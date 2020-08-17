@@ -11,3 +11,14 @@ export type User = {
   iat: string; // "Mon Aug 17 01:56:04 UTC 2020",
   email: string; // "asdf@asdf.fr"
 };
+
+export type Concept = {
+  id: number;
+  name: string;
+};
+
+export type Brick = {
+  id: number;
+  conceptId: number;
+  content: string;
+};
