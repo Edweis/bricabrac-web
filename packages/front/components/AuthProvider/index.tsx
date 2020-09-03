@@ -19,10 +19,15 @@ const AuthProvider: FunctionComponent = (props) => {
 
   const login = async (email: string, password: string) => {
     setLoading(true);
-    await auth.signIn(email, password);
-    const connectedUser = await auth.getConnectedUser();
-    setUser(connectedUser);
-    setLoading(false);
+    try {
+      await auth.signIn(email, password);
+      const connectedUser = await auth.getConnectedUser();
+      setUser(connectedUser);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      throw error;
+    }
   };
 
   const logout = async () => {
@@ -35,8 +40,13 @@ const AuthProvider: FunctionComponent = (props) => {
 
   const signUp = async (email: string, password: string) => {
     setLoading(true);
-    await auth.signUp(email, password);
-    await login(email, password);
+    try {
+      await auth.signUp(email, password);
+      await login(email, password);
+    } catch (error) {
+      setLoading(false);
+      throw error;
+    }
   };
 
   const value = {

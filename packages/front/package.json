@@ -8,8 +8,8 @@
     "start": "next start"
   },
   "dependencies": {
-    "@packages/typings": "file:../typings",
     "@hookform/resolvers": "^0.1.0",
+    "@packages/typings": "file:../typings",
     "aws-amplify": "^3.0.23",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.2",
@@ -23,6 +23,7 @@
     "react-hook-form": "^6.3.1",
     "remark": "^12.0.0",
     "remark-html": "^11.0.1",
+    "sass": "^1.26.10",
     "yup": "^0.29.3"
   },
   "devDependencies": {
