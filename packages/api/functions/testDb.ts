@@ -1,4 +1,4 @@
-import knex from '../layers/database/index';
+import knex from '../layers/database';
 
 knex('test')
   .insert({ id: 12 })
