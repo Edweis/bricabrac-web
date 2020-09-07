@@ -2,6 +2,7 @@
 service: api
 plugins:
   - serverless-webpack
+  - serverless-dotenv-plugin
 
 provider:
   name: aws
@@ -28,8 +29,8 @@ resources:
         AllocatedStorage: 20
         Engine: postgres
         EngineVersion: 12.3
-        MasterUsername: postgres
-        MasterUserPassword: postgres
+        MasterUsername: ${env:MAIN_DATABASE_USERNAME}
+        MasterUserPassword: ${env:MAIN_DATABASE_PASSWORD}
   Outputs:
     MainPostgresInstanceId:
       Description: InstanceId of the newly created RDS Instance
