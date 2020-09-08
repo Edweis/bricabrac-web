@@ -1,21 +1,34 @@
 # inspired from https://www.codegigs.app/how-to-cognito-user-pool-using-serverless/
 service: api
-plugins:
-  - serverless-webpack
-  - serverless-dotenv-plugin
-
 provider:
   name: aws
   stage: ${opt:stage, 'stage'}
   region: ap-southeast-1
   runtime: nodejs12.x
+plugins:
+  - serverless-webpack
+  - serverless-dotenv-plugin
+  - serverless-offline
+
+custom:
+  serverless-offline:
+    # httpsProtocol: "dev-certs"
+    httpPort: 2727
+    stageVariables:
+      foo: "bar"
 
 functions:
   health:
-    handler: functions/health.default
+    handler: functions/health.handler
     events:
       - http:
           path: health
+          method: GET
+  testDb:
+    handler: functions/testDb.handler
+    events:
+      - http:
+          path: testDb
           method: GET
 
 resources:

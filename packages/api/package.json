@@ -8,6 +8,9 @@
     "pg": "^8.3.3"
   },
   "devDependencies": {
-    "serverless-dotenv-plugin": "^3.0.0"
+    "@types/aws-lambda": "^8.10.62",
+    "dotenv-webpack": "^2.0.0",
+    "serverless-dotenv-plugin": "^3.0.0",
+    "serverless-offline": "^6.7.0"
   }
 }

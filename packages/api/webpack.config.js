@@ -1,4 +1,5 @@
 const slsw = require('serverless-webpack');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: slsw.lib.entries,
@@ -8,4 +9,8 @@ module.exports = {
     rules: [{ test: /\.tsx?$/, use: 'ts-loader', exclude: /node_modules/ }],
   },
   resolve: { extensions: ['.tsx', '.ts'] },
+  externals: {
+    knex: 'commonjs knex',
+  },
+  plugins: [new Dotenv()],
 };
