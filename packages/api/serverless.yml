@@ -12,10 +12,13 @@ plugins:
 
 custom:
   serverless-offline:
-    # httpsProtocol: "dev-certs"
     httpPort: 2727
-    stageVariables:
-      foo: "bar"
+
+layers:
+  database:
+    path: layers/database
+    compatibleRuntimes:
+      - nodejs12.x
 
 functions:
   health:
@@ -26,6 +29,8 @@ functions:
           method: GET
   testDb:
     handler: functions/testDb.handler
+    layers:
+      - !Ref DatabaseLambdaLayer
     events:
       - http:
           path: testDb
@@ -48,3 +53,7 @@ resources:
     MainPostgresInstanceId:
       Description: InstanceId of the newly created RDS Instance
       Value: !Ref MainPostgresDb
+    DatabaseLayerExport:
+      Value: !Ref DatabaseLambdaLayer
+      Export:
+        Name: database-${self:provider.stage}
