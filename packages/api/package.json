@@ -1,10 +1,12 @@
 {
   "name": "api",
   "private": true,
+  "scripts": {
+    "build": ""
+  },
   "dependencies": {
     "dotenv": "^8.2.0",
     "http-status-codes": "^1.4.0",
-    "knex": "^0.21.5",
     "pg": "^8.3.3"
   },
   "devDependencies": {

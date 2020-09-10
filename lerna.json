@@ -1,6 +1,8 @@
 {
   "packages": [
-    "packages/*"
+    "packages/*",
+    "packages/api/layers/*",
+    "packages/api/migration"
   ],
   "version": "0.0.0"
 }
