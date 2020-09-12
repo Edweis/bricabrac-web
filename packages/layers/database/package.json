@@ -2,7 +2,6 @@
   "name": "@layers/database",
   "version": "1.0.0",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "compile": "tsc",
     "copy": "copyfiles -f ./package.json ./package-lock.json ./dist/nodejs/node_modules/@layers/database",
