@@ -1,0 +1,24 @@
+service: layers
+provider:
+  name: aws
+  stage: ${opt:stage, 'stage'}
+  region: ap-southeast-1
+  runtime: nodejs12.x
+
+plugins:
+  - serverless-webpack
+
+layers:
+  database:
+    name: ${self:provider.stage}-DatabaseLambda
+    path: database/dist
+    compatibleRuntimes:
+      - nodejs12.x
+
+resources:
+  Outputs:
+    DatabaseLayerExport:
+      Value:
+        Ref: DatabaseLambdaLayer
+      Export:
+        Name: ${self:provider.stage}-DatabaseLambda

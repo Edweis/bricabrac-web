@@ -11,6 +11,7 @@ module.exports = {
   resolve: { extensions: ['.tsx', '.ts'] },
   externals: {
     knex: 'commonjs knex',
+    '@layers/database': '@layers/database',
   },
   plugins: [new Dotenv()],
 };

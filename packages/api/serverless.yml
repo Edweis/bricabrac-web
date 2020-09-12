@@ -5,6 +5,8 @@ provider:
   stage: ${opt:stage, 'stage'}
   region: ap-southeast-1
   runtime: nodejs12.x
+  vpc: ${file(../layers/database/aliases.yml):database_vpc.${self:provider.stage}}
+
 plugins:
   - serverless-webpack
   - serverless-dotenv-plugin
@@ -13,12 +15,6 @@ plugins:
 custom:
   serverless-offline:
     httpPort: 2727
-
-layers:
-  database:
-    path: layers/database
-    compatibleRuntimes:
-      - nodejs12.x
 
 functions:
   health:
@@ -30,7 +26,7 @@ functions:
   testDb:
     handler: functions/testDb.handler
     layers:
-      - !Ref DatabaseLambdaLayer
+      - ${cf:layers-${self:provider.stage}.DatabaseLayerExport}
     events:
       - http:
           path: testDb
@@ -49,11 +45,23 @@ resources:
         EngineVersion: 12.3
         MasterUsername: ${env:MAIN_DATABASE_USERNAME}
         MasterUserPassword: ${env:MAIN_DATABASE_PASSWORD}
+
+    AWSLambdaVPCAccessExecutionRole: # from https://medium.com/@antonio.cm.oliveira/how-to-access-your-rds-database-with-lambda-function-and-serverless-b7712dde9f80
+      Type: AWS::IAM::ManagedPolicy
+      Properties:
+        Description: Creating policy for vpc connetion.
+        Roles:
+          - !Ref IamRoleLambdaExecution
+        PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+            - Effect: Allow
+              Action:
+                - ec2:CreateNetworkInterface
+                - ec2:DescribeNetworkInterfaces
+                - ec2:DeleteNetworkInterface
+              Resource: "*"
   Outputs:
     MainPostgresInstanceId:
       Description: InstanceId of the newly created RDS Instance
       Value: !Ref MainPostgresDb
-    DatabaseLayerExport:
-      Value: !Ref DatabaseLambdaLayer
-      Export:
-        Name: database-${self:provider.stage}

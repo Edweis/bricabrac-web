@@ -4,13 +4,12 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "http-status-codes": "^1.4.0",
-    "pg": "^8.3.3"
+    "@layers/database": "file:../layers/database/dist/nodejs/node_modules/@layers/database"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.62",
     "dotenv-webpack": "^2.0.0",
     "serverless-dotenv-plugin": "^3.0.0",
-    "serverless-offline": "^6.7.0",
-    "@layers/database": "file:../layers/database/dist/database-layer/node_modules/database"
+    "serverless-offline": "^6.7.0"
   }
 }

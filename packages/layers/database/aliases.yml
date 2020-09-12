@@ -1,0 +1,14 @@
+database_vpc:
+  stage:
+    securityGroupIds:
+      - sg-08a5d746a954d13c1
+    subnetIds:
+      - subnet-05bd99985e6c8ae18
+      - subnet-0f01cf877fbfcd7a8
+      - subnet-020d14af63730bbfa
+  # prod:
+  #   securityGroupIds:
+  #     - sg-e8f3458e
+  #   subnetIds:
+  #     - subnet-90a123d9
+  #     - subnet-a0811cc7

@@ -1,14 +1,18 @@
 {
-  "name": "database",
+  "name": "@layers/database",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "compile": "tsc",
-    "copy": "copyfiles -f ./package.json ./dist/database-layer/node_modules/database",
-    "build": "npm run compile && npm run copy"
+    "copy": "copyfiles -f ./package.json ./package-lock.json ./dist/nodejs/node_modules/@layers/database",
+    "install-dist": "cd ./dist/nodejs/node_modules/@layers/database && npm ci --only=prod",
+    "build": "npm run compile && npm run copy && npm run install-dist"
   },
   "dependencies": {
-    "knex": "^0.21.5"
+    "knex": "^0.21.5",
+    "pg": "^8.3.3",
+    "dotenv": "^8.2.0"
   },
   "devDependencies": {
     "copyfiles": "^2.3.0"

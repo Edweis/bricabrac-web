@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "dist/database-layer/node_modules/database",
+    "outDir": "dist/nodejs/node_modules/@layers/database",
     "declaration": true
   },
   "extends": "../../../tsconfig.json",
