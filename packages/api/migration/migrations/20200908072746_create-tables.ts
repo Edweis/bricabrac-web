@@ -4,22 +4,24 @@ import * as Knex from 'knex';
 export async function up(knex: Knex): Promise<void> {
   await knex.schema.createTable('source', (table) => {
     table.increments();
-    table.string('name');
+    table.string('name').notNullable();
+    table.unique(['name']);
   });
   await knex.schema.createTable('concept', (table) => {
-    table.string('name').primary();
-  });
-  await knex.schema.createTable('bricks', (table) => {
     table.increments();
-    table.string('name');
-    table.string('author');
-    table.text('content');
+    table.string('name').notNullable();
+    table.unique(['name']);
+  });
+  await knex.schema.createTable('brick', (table) => {
+    table.increments();
+    table.string('author').notNullable();
+    table.text('content').notNullable();
 
-    table.integer('source_id');
+    table.integer('source_id').notNullable();
     table.foreign('source_id').references('source.id');
 
-    table.string('parent_concept_name');
-    table.foreign('parent_concept_name').references('concept.name');
+    table.integer('concept_id').notNullable();
+    table.foreign('concept_id').references('concept.id');
     table.timestamps(true, true);
   });
 }

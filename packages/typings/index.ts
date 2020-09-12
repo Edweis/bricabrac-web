@@ -16,9 +16,17 @@ export type Concept = {
   id: number;
   name: string;
 };
+export type Source = {
+  id: number;
+  name: string;
+};
 
 export type Brick = {
   id: number;
-  conceptId: number;
   content: string;
+  author: string;
+  sourceId: number;
+  conceptId: number;
+  createdAt: Date;
+  updatedAt: Date;
 };

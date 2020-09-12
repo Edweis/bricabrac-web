@@ -4,6 +4,7 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "http-status-codes": "^1.4.0",
+    "@packages/typings": "file:../typings",
     "@layers/database": "file:../layers/database/dist/nodejs/node_modules/@layers/database"
   },
   "devDependencies": {

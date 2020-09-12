@@ -23,13 +23,13 @@ functions:
       - http:
           path: health
           method: GET
-  testDb:
-    handler: functions/testDb.handler
+  all:
+    handler: functions/all.handler
     layers:
       - ${cf:layers-${self:provider.stage}.DatabaseLayerExport}
     events:
       - http:
-          path: testDb
+          path: all/{table}
           method: GET
 
 resources:

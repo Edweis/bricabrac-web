@@ -1,3 +1,4 @@
+/* eslint-disable */
 const slsw = require('serverless-webpack');
 const Dotenv = require('dotenv-webpack');
 
