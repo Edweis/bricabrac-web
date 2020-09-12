@@ -1,6 +1,7 @@
 import knex from '@layers/database';
+import res from '../response';
 
 export const handler = async () => {
-  console.debug('FETCHING...');
-  await knex('concept').select().then(console.log);
+  const results = await knex('concept').select();
+  return res.success(results);
 };
