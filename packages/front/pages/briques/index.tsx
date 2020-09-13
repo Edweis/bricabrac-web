@@ -13,13 +13,11 @@ type Props = {
   sourceLookup: { [id: number]: Source };
 };
 function Briques(props: Props) {
-  console.debug('render', props);
   const { bricks, concepts, sourceLookup } = props;
   const [selection, setSelection] = useState(concepts[0].id);
   const filteredBricks = bricks.filter(
     (brick) => brick.conceptId === selection,
   );
-  // <span class="badge">14</span>
   return (
     <div>
       <Head>
