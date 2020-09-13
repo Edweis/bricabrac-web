@@ -29,8 +29,11 @@ function Briques(props: Props) {
   const { register, handleSubmit, errors } = useForm<FormData>({
     resolver: yupResolver(validationSchema),
   });
+  const [loading, setLoading] = useState(false);
   const onSubmit = handleSubmit(async (data) => {
-    console.debug({ data });
+    setLoading(true);
+    await api.post('/brick/add', data).catch(console.error);
+    setLoading(false);
   });
   return (
     <div>
@@ -71,7 +74,15 @@ function Briques(props: Props) {
         </div>
         <div className="text-center mt-3">
           <button type="submit" className="btn btn-lg btn-primary">
-            Add brick
+            {loading ? (
+              <span
+                className="spinner-border"
+                role="status"
+                aria-hidden="true"
+              />
+            ) : (
+              'Add brick'
+            )}
           </button>
         </div>
       </form>

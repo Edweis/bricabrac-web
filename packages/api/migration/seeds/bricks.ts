@@ -7,34 +7,40 @@ export async function seed(knex: Knex): Promise<void> {
   await knex('concept').del();
   await knex('source').del();
 
-  await knex('concept').insert([
-    { id: 1, name: 'concept one' },
-    { id: 2, name: 'concept two' },
-    { id: 3, name: 'concept three' },
-  ]);
-  await knex('source').insert([
-    { id: 1, name: 'source one' },
-    { id: 2, name: 'source two' },
-    { id: 3, name: 'source three' },
-  ]);
+  const concepts = await knex('concept')
+    .insert([
+      { name: 'concept one' },
+      { name: 'concept two' },
+      { name: 'concept three' },
+    ])
+    .returning('id');
+  const sources = await knex('source')
+    .insert([
+      { name: 'source one' },
+      { name: 'source two' },
+      { name: 'source three' },
+    ])
+    .returning('id');
+
+  console.debug({ sources, concepts });
   await knex('brick').insert([
     {
       author: 'Bryan',
       content: `ONE ${lorem}`,
-      source_id: 1,
-      concept_id: 1,
+      source_id: sources[0],
+      concept_id: concepts[0],
     },
     {
       author: 'Roger',
       content: `ONE bis ${lorem}`,
-      source_id: 3,
-      concept_id: 1,
+      source_id: sources[2],
+      concept_id: concepts[0],
     },
     {
       author: 'Bryan',
       content: `TWO ${lorem}`,
-      source_id: 2,
-      concept_id: 2,
+      source_id: sources[2],
+      concept_id: concepts[1],
     },
   ]);
 }

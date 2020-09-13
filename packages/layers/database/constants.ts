@@ -19,8 +19,8 @@ export const DATABASE_CONNECTION: Config = {
     database: process.env.MAIN_DATABASE_NAME,
   },
   pool: { min: 1, max: 7 },
-  debug:
-    process.env.NODE_ENV === 'development' || process.env.IS_OFFLINE === 'true',
+  // debug:
+  //   process.env.NODE_ENV === 'development' || process.env.IS_OFFLINE === 'true',
   postProcessResponse: (result) => {
     console.debug(result);
     if (Array.isArray(result)) {
