@@ -25,6 +25,12 @@ export async function seed(knex: Knex): Promise<void> {
       concept_id: 1,
     },
     {
+      author: 'Roger',
+      content: `ONE bis ${lorem}`,
+      source_id: 3,
+      concept_id: 1,
+    },
+    {
       author: 'Bryan',
       content: `TWO ${lorem}`,
       source_id: 2,

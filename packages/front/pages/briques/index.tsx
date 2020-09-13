@@ -3,12 +3,18 @@ import { GetStaticProps } from 'next';
 import { Concept, Brick, Source } from '@packages/typings';
 import cn from 'classnames';
 import Head from 'next/head';
+import { format } from 'timeago.js';
 import ProtectRoute from '../../components/ProtectedRoute';
 import api from '../../lib/api';
 
-type Props = { bricks: Brick[]; concepts: Concept[]; sources: Source[] };
+type Props = {
+  bricks: Brick[];
+  concepts: Concept[];
+  sourceLookup: { [id: number]: Source };
+};
 function Briques(props: Props) {
-  const { bricks, concepts, sources } = props;
+  console.debug('render', props);
+  const { bricks, concepts, sourceLookup } = props;
   const [selection, setSelection] = useState(concepts[0].id);
   const filteredBricks = bricks.filter(
     (brick) => brick.conceptId === selection,
@@ -23,9 +29,10 @@ function Briques(props: Props) {
       <div className="row">
         <div className="col-4">
           <div className="list-group" id="list-tab" role="tablist">
-            {bricks.map(({ conceptId }) => {
-              const concept = concepts.find((c) => c.id === conceptId);
-              if (concept == null) throw Error('concept not found');
+            {concepts.map((concept) => {
+              const count = bricks.filter(
+                (brick) => brick.conceptId === concept.id,
+              ).length;
               const active = concept.id === selection;
               const mainStyle =
                 'list-group-item list-group-item-action btn-with-badge';
@@ -37,7 +44,7 @@ function Briques(props: Props) {
                   onClick={() => setSelection(concept.id)}
                 >
                   {concept.name}
-                  <span className="badge">{filteredBricks.length}</span>
+                  <span className="badge">{count}</span>
                 </button>
               );
             })}
@@ -47,7 +54,14 @@ function Briques(props: Props) {
           <div className="tab-content" id="nav-tabContent">
             {filteredBricks.map((brick) => (
               <div className="tab-pane active" key={brick.id}>
-                {brick.content}
+                <p>{brick.content}</p>
+                <p className="brick-meta text-secondary text-right">
+                  <span className="font-italic">
+                    {sourceLookup[brick.sourceId].name}
+                  </span>
+                  {', '}
+                  {format(brick.createdAt)}, by {brick.author}
+                </p>
               </div>
             ))}
           </div>
@@ -67,5 +81,10 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
   const concepts = await api
     .get<Source[]>('all/concept')
     .then(({ data }) => data);
-  return { props: { bricks, sources, concepts } };
+  const sourceLookup = sources.reduce(
+    (acc, value) => ({ ...acc, [value.id]: value }),
+    {},
+  );
+
+  return { props: { bricks, sourceLookup, concepts } };
 };
