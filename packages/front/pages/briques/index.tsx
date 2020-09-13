@@ -10,6 +10,10 @@ type Props = { bricks: Brick[]; concepts: Concept[]; sources: Source[] };
 function Briques(props: Props) {
   const { bricks, concepts, sources } = props;
   const [selection, setSelection] = useState(concepts[0].id);
+  const filteredBricks = bricks.filter(
+    (brick) => brick.conceptId === selection,
+  );
+  // <span class="badge">14</span>
   return (
     <div>
       <Head>
@@ -23,7 +27,8 @@ function Briques(props: Props) {
               const concept = concepts.find((c) => c.id === conceptId);
               if (concept == null) throw Error('concept not found');
               const active = concept.id === selection;
-              const mainStyle = 'list-group-item list-group-item-action';
+              const mainStyle =
+                'list-group-item list-group-item-action btn-with-badge';
               return (
                 <button
                   className={cn(mainStyle, { active })}
@@ -32,6 +37,7 @@ function Briques(props: Props) {
                   onClick={() => setSelection(concept.id)}
                 >
                   {concept.name}
+                  <span className="badge">{filteredBricks.length}</span>
                 </button>
               );
             })}
@@ -39,13 +45,11 @@ function Briques(props: Props) {
         </div>
         <div className="col-8">
           <div className="tab-content" id="nav-tabContent">
-            {bricks
-              .filter((brick) => brick.conceptId === selection)
-              .map((brick) => (
-                <div className="tab-pane active" key={brick.id}>
-                  {brick.content}
-                </div>
-              ))}
+            {filteredBricks.map((brick) => (
+              <div className="tab-pane active" key={brick.id}>
+                {brick.content}
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -63,6 +67,5 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
   const concepts = await api
     .get<Source[]>('all/concept')
     .then(({ data }) => data);
-  console.debug('Brick fetched !', bricks);
   return { props: { bricks, sources, concepts } };
 };
