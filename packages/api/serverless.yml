@@ -12,6 +12,16 @@ plugins:
   - serverless-dotenv-plugin
   - serverless-offline
 
+alias:
+  - &layers
+    - ${cf:layers-${self:provider.stage}.DatabaseLayerExport}
+  - &authorizer
+    type: COGNITO_USER_POOLS
+    authorizerId:
+      Ref: CognitoAuthorizer
+  - &MainApiGateway
+    Ref: ApiGatewayRestApi
+
 custom:
   serverless-offline:
     httpPort: 2727
@@ -25,19 +35,19 @@ functions:
           method: GET
   all:
     handler: functions/all.handler
-    layers:
-      - ${cf:layers-${self:provider.stage}.DatabaseLayerExport}
+    layers: *layers
     events:
       - http:
           path: all/{table}
+          authorizer: *authorizer
           method: GET
   brick-add:
     handler: functions/brick/add.handler
-    layers:
-      - ${cf:layers-${self:provider.stage}.DatabaseLayerExport}
+    layers: *layers
     events:
       - http:
           path: brick/add
+          authorizer: *authorizer
           method: POST
 
 resources:
@@ -69,6 +79,27 @@ resources:
                 - ec2:DescribeNetworkInterfaces
                 - ec2:DeleteNetworkInterface
               Resource: "*"
+
+    CognitoAuthorizer: # Duplicate from Auth stack
+      Type: AWS::ApiGateway::Authorizer
+      Properties:
+        AuthorizerResultTtlInSeconds: 10
+        IdentitySource: method.request.header.Authorization
+        Name: ${self:provider.stage}-cognito-authorizer
+        RestApiId: *MainApiGateway
+        Type: COGNITO_USER_POOLS
+        ProviderARNs:
+          # - {"Fn::Join": ["", ["arn:aws:cognito-idp:", {Ref: "AWS::Region"}, ":", ${cf:authentification-${self:provider.stage}.UserPoolId}, ":userpool/", {Ref: CognitoUserPool}]]}
+          - !Join
+            - ''
+            -  - 'arn:aws:cognito-idp:'
+               - !Ref AWS::Region
+               - ':'
+               - !Ref AWS::AccountId
+               - ':userpool/'
+               - ${cf:authentification-${self:provider.stage}.UserPoolId}
+
+
   Outputs:
     MainPostgresInstanceId:
       Description: InstanceId of the newly created RDS Instance

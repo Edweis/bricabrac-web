@@ -36,7 +36,6 @@ functions:
             origin: '*'
             headers:
               - Authorization
-
             allowCredentials: false
           authorizer:
             type: COGNITO_USER_POOLS
@@ -88,12 +87,12 @@ resources:
       Value: !Ref CognitoUserPool
     UserPoolClientId:
       Value: !Ref CognitoUserPoolClient
-
-
-  # IdentityPoolId:
-  #   Value: !Ref CognitoIdentityPool
-  #
-  # CognitoAuthRole:
-  #   Value: !Ref CognitoAuthRole
-  #   Export:
-  #     Name: YTTest-ExtCognitoAuthRole-${self:custom.stage}
+    MainApiGateway:
+      Value: *MainApiGateway
+      Export:
+          Name: MainApiGateway
+    CognitoAuthorizer:
+      Value:
+        Ref: CognitoAuthorizer
+      Export:
+          Name: CognitoAuthorizer
