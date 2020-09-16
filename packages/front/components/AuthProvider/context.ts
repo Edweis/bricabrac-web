@@ -1,9 +1,8 @@
 import { createContext } from 'react';
-import { User } from '@packages/typings';
 
 type ContextProps = {
   isAuthenticated: boolean;
-  user: User | null;
+  user: string | null;
   loading: boolean;
   login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;

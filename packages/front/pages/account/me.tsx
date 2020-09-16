@@ -4,7 +4,7 @@ import { useAuth } from '../../lib/hooks';
 
 function Me() {
   const auth = useAuth();
-  const email = auth.user?.email;
+  const email = auth.user;
   return (
     <div>
       <h1>Welcome {email}</h1>

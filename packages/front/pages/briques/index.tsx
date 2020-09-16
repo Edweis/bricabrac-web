@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { GetStaticProps } from 'next';
+import Link from 'next/link';
 import { Concept, Brick, Source } from '@packages/typings';
 import cn from 'classnames';
 import Head from 'next/head';
 import { format } from 'timeago.js';
 import ProtectRoute from '../../components/ProtectedRoute';
-import api from '../../lib/api';
+import api from '../../services/api';
 
 type Props = {
   bricks: Brick[];
@@ -19,7 +20,7 @@ function Briques(props: Props) {
     (brick) => brick.conceptId === selection,
   );
   return (
-    <div>
+    <>
       <Head>
         <title>Briques</title>
       </Head>
@@ -65,7 +66,16 @@ function Briques(props: Props) {
           </div>
         </div>
       </div>
-    </div>
+      <div className="row">
+        <div className="col text-center">
+          <Link href="/briques/add">
+            <button className="btn btn-primary btn-lg" type="button">
+              Add a new brique
+            </button>
+          </Link>
+        </div>
+      </div>
+    </>
   );
 }
 

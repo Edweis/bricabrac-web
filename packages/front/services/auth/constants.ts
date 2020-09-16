@@ -17,3 +17,4 @@ export default {
     // IDENTITY_POOL_ID: 'YOUR_IDENTITY_POOL_ID',
   },
 };
+export const OFFLINE_IDENTITY = '88888888-fd4e-47eb-904d-4c37849b3db5';

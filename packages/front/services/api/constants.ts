@@ -1,6 +1,9 @@
 export const BASE_URL =
-  'https://h9beij9hc9.execute-api.ap-southeast-1.amazonaws.com/stage';
-export const CORS_HEADERS = {
+  process.env.NODE_ENV === 'production'
+    ? 'https://api.bbw.kapochamo.com/'
+    : 'http://localhost:2727/stage/';
+
+export const DEFAULT_HEADERS = {
   // 'Access-Control-Allow-Origin': '*',
   // 'Access-Control-Allow-Credentials': true,
   // 'Access-Control-Allow-Headers': '*',

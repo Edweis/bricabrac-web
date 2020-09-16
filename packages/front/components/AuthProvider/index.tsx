@@ -1,11 +1,10 @@
 import React, { useState, useEffect, FunctionComponent } from 'react';
 import Cookies from 'js-cookie';
-import { User } from '@packages/typings';
 import * as auth from '../../services/auth';
 import { AuthContext } from './context';
 
 const AuthProvider: FunctionComponent = (props) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   console.debug({ user, loading });
   useEffect(() => {

@@ -8,8 +8,10 @@ type Payload = {
   source: string;
 };
 export const handler = async (event: Event) => {
+  console.debug(event);
   const payload: Payload = JSON.parse(event.body || '{}');
-
+  const user = event.requestContext.identity.cognitoIdentityId;
+  if (user == null) throw Error('user is null');
   // insert source
   let source = await knex('source')
     .where({ name: payload.source })
@@ -35,6 +37,7 @@ export const handler = async (event: Event) => {
       concept_id: concept.id,
       source_id: source.id,
       content: payload.content,
+      author: user,
     })
     .returning('id');
   return res.success(results);

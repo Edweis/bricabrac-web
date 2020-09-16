@@ -8,7 +8,7 @@ import Head from 'next/head';
 import { orderBy } from 'lodash';
 import * as yup from 'yup';
 import ProtectRoute from '../../components/ProtectedRoute';
-import api from '../../lib/api';
+import api from '../../services/api';
 
 type FormData = {
   concept: string;
