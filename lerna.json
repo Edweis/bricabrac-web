@@ -4,5 +4,12 @@
     "packages/layers/*",
     "packages/api/migration"
   ],
+  "commands": {
+    "publish": {
+      "ignoreChanges": [ "ignored-file", "*.md" ],
+      "message": "chore(release): publish",
+      "registry": "https://npm.pkg.github.com"
+    }
+  },
   "version": "0.0.0"
 }
