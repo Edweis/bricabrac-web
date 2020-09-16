@@ -2,9 +2,9 @@
   "name": "api",
   "version": "0.1.0",
   "private": true,
-	"scripts": {
-	  "dev":"sls offline"
-	},
+  "scripts": {
+    "dev": "sls offline"
+  },
   "dependencies": {
     "dotenv": "^8.2.0",
     "http-status-codes": "^1.4.0",

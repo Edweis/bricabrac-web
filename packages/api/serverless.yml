@@ -39,7 +39,6 @@ functions:
     events:
       - http:
           path: all/{table}
-          authorizer: *authorizer
           method: GET
   brick-add:
     handler: functions/brick/add.handler

@@ -22,7 +22,6 @@ export const DATABASE_CONNECTION: Config = {
   // debug:
   //   process.env.NODE_ENV === 'development' || process.env.IS_OFFLINE === 'true',
   postProcessResponse: (result) => {
-    console.debug(result);
     if (Array.isArray(result)) {
       return result.map(toCamelCase);
     }
