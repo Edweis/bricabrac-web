@@ -10,9 +10,7 @@ module.exports = (phase) => {
     IS_DEV: phase === PHASE_DEVELOPMENT_SERVER,
     IS_PROD: phase === PHASE_PRODUCTION_BUILD && process.env.STAGING !== '1',
     IS_STAGE: phase === PHASE_PRODUCTION_BUILD && process.env.STAGING === '1',
-    other:'other'
   };
-  console.debug('processed ENV', env)
   return {
     env,
     async redirects() {
