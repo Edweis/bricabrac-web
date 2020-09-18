@@ -19,7 +19,6 @@ export const handler = async (event: Event) => {
     .then((object) => object.id || null);
   if (source == null) {
     source = await knex('source').insert({ name: payload.source }, ['id']);
-    console.debug('CREATED', { source });
   }
 
   // insert concept
@@ -29,7 +28,6 @@ export const handler = async (event: Event) => {
     .then((object) => object.id || null);
   if (concept == null) {
     concept = await knex('concept').insert({ name: payload.concept }, ['id']);
-    console.debug('CREATED', { concept });
   }
   console.debug({ source, concept });
   const results = await knex('brick')
