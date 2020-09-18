@@ -4,6 +4,7 @@ import path from 'path';
 const envResult = dotenv.config({
   path: path.resolve(__dirname, '.env'),
 });
+
 if (envResult.error) throw envResult.error;
 
 if (process.env.MAIN_DATABASE_PASSWORD == null)
