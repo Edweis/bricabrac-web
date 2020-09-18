@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { useAuth } from '../lib/hooks';
 
 export default function ProtectRouteHOC<P>(Component: React.ComponentType<P>) {
+
   return function ProtectRoute(props: P) {
     const { isAuthenticated, loading } = useAuth();
     const router = useRouter();
