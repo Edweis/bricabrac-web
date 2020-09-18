@@ -8,6 +8,7 @@ export const handler = async (event: APIGatewayEvent) => {
   if (!table || !SUPPORTED_TABLES.includes(table)) {
     return res.error('Unsupported table');
   }
+
   const results = await knex(table).select();
   return res.success(results);
 };

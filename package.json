@@ -1,6 +1,10 @@
 {
   "name": "root",
   "private": true,
+  "scripts": {
+    "build": "lerna run build --stream --parallel --since",
+    "deploy": "lerna run deploy --stream --parallel --since"
+  },
   "dependencies": {
     "api": "file:packages/api",
     "auth": "file:packages/auth",
