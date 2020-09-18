@@ -1,10 +1,10 @@
 {
   "name": "migration",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "dependencies": {
+    "@packages/typings": "file:../../typings",
     "dotenv": "^8.2.0",
     "knex": "^0.21.5",
-    "pg": "^8.3.3",
-    "@packages/typings": "file:../../typings"
+    "pg": "^8.3.3"
   }
 }

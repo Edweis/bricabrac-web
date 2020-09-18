@@ -7,10 +7,10 @@
     "deploy": "serverless deploy"
   },
   "dependencies": {
-    "dotenv": "^8.2.0",
-    "http-status-codes": "^1.4.0",
+    "@layers/database": "file:../layers/database/dist/nodejs/node_modules/@layers/database",
     "@packages/typings": "file:../typings",
-    "@layers/database": "file:../layers/database/dist/nodejs/node_modules/@layers/database"
+    "dotenv": "^8.2.0",
+    "http-status-codes": "^1.4.0"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.62",
