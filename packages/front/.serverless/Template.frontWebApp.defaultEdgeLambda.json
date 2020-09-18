@@ -1,0 +1,17 @@
+{
+  "name": "jw50a4d-0ty8l8w",
+  "hash": "ftAX6ULmbP9wsuuEpNBXOXXNbgDfP39cFHBqLoV2zc8=",
+  "description": "Default Lambda@Edge for Next CloudFront distribution",
+  "memory": 512,
+  "timeout": 10,
+  "code": "/Users/francoisrulliere/Documents/edweis/bricabrac-web/packages/front/.serverless_nextjs/default-lambda",
+  "shims": [],
+  "handler": "index.handler",
+  "runtime": "nodejs12.x",
+  "env": {},
+  "role": {
+    "arn": "arn:aws:iam::441615332532:role/jw50a4d-t7poj5r"
+  },
+  "arn": "arn:aws:lambda:us-east-1:441615332532:function:jw50a4d-0ty8l8w",
+  "region": "us-east-1"
+}

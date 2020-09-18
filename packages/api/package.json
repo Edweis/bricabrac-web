@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "sls offline"
+    "dev": "serverless offline",
+    "deploy": "serverless deploy"
   },
   "dependencies": {
     "dotenv": "^8.2.0",

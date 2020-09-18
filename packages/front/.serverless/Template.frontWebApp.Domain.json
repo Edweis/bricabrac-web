@@ -1,0 +1,13 @@
+{
+  "region": "us-east-1",
+  "privateZone": false,
+  "domain": "kapochamo.com",
+  "subdomains": [
+    {
+      "domain": "bbw.kapochamo.com",
+      "distributionId": "E1EFPGZLGTIHCD",
+      "url": "https://d3dap674lnnmhz.cloudfront.net",
+      "type": "awsCloudFront"
+    }
+  ]
+}

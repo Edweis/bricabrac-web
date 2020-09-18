@@ -2,6 +2,9 @@
   "name": "auth",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "deploy": "serverless deploy"
+  },
   "dependencies": {
     "@packages/typings": "file:../typings",
     "aws-lambda": "^1.0.6",

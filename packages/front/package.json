@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "deploy": "serverless deploy --debug && git add .serverless/ && git commit 'Update front/.serverless after deployement'",
     "start": "next start"
   },
   "dependencies": {

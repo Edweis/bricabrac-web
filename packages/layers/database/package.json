@@ -6,7 +6,8 @@
     "compile": "tsc",
     "copy": "copyfiles -f ./package.json ./package-lock.json ./dist/nodejs/node_modules/@layers/database",
     "install-dist": "cd ./dist/nodejs/node_modules/@layers/database && npm ci --only=prod",
-    "build": "npm run compile && npm run copy && npm run install-dist"
+    "build": "npm run compile && npm run copy && npm run install-dist",
+    "deploy": "cd ..; serverless deploy"
   },
   "dependencies": {
     "i": "^0.3.6",
