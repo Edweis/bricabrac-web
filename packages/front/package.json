@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "deploy": "serverless deploy --debug && git add .serverless/ && git commit 'Update front/.serverless after deployement'",
+    "deploy": "serverless --component frontWebApp --debug && git add .serverless/ && git commit -m 'Update front/.serverless after deployement'",
     "start": "next start"
   },
   "dependencies": {
@@ -30,7 +30,7 @@
     "yup": "^0.29.3"
   },
   "devDependencies": {
-    "@sls-next/serverless-component": "^1.17.0-alpha.12",
+    "@sls-next/serverless-component": "^1.17.0-alpha.15",
     "@types/aws-lambda": "^8.10.62",
     "@types/classnames": "^2.2.10",
     "@types/js-cookie": "^2.2.6",

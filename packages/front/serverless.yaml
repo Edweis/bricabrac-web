@@ -1,4 +1,4 @@
 frontWebApp:
-  component: "@sls-next/serverless-component@1.17.0-alpha.12"
+  component: "@sls-next/serverless-component@1.17.0-alpha.15"
   inputs:
     domain: ["bbw", "kapochamo.com"]
