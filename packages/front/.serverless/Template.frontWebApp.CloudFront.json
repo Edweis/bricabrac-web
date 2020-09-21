@@ -40,8 +40,8 @@
             "GET"
           ],
           "lambda@edge": {
-            "origin-response": "arn:aws:lambda:us-east-1:441615332532:function:jw50a4d-0ty8l8w:6",
-            "origin-request": "arn:aws:lambda:us-east-1:441615332532:function:jw50a4d-0ty8l8w:6"
+            "origin-response": "arn:aws:lambda:us-east-1:441615332532:function:jw50a4d-0ty8l8w:8",
+            "origin-request": "arn:aws:lambda:us-east-1:441615332532:function:jw50a4d-0ty8l8w:8"
           }
         }
       }
@@ -58,11 +58,16 @@
     },
     "allowedHttpMethods": [
       "HEAD",
-      "GET"
+      "DELETE",
+      "POST",
+      "GET",
+      "OPTIONS",
+      "PUT",
+      "PATCH"
     ],
     "lambda@edge": {
-      "origin-request": "arn:aws:lambda:us-east-1:441615332532:function:jw50a4d-0ty8l8w:6",
-      "origin-response": "arn:aws:lambda:us-east-1:441615332532:function:jw50a4d-0ty8l8w:6"
+      "origin-request": "arn:aws:lambda:us-east-1:441615332532:function:jw50a4d-0ty8l8w:8",
+      "origin-response": "arn:aws:lambda:us-east-1:441615332532:function:jw50a4d-0ty8l8w:8"
     },
     "compress": true
   }
