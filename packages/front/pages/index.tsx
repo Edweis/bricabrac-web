@@ -13,10 +13,14 @@ export default function Home() {
       <h1>Hi all</h1>
       <ul>
         <li>
-          <Link href="/account/login">Login page</Link>
+          <Link href="/account/login">
+            <a>Login page</a>
+          </Link>
         </li>
         <li>
-          <Link href="/briques">Briques</Link>
+          <Link href="/briques">
+            <a>Briques</a>
+          </Link>
         </li>
       </ul>
     </div>
