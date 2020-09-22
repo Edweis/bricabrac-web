@@ -8,35 +8,47 @@ type Payload = {
   source: string;
 };
 export const handler = async (event: Event) => {
-  console.debug(event);
+  // console.debug(event);
   const payload: Payload = JSON.parse(event.body || '{}');
   const user = event.requestContext.identity.cognitoIdentityId;
   if (user == null) throw Error('user is null');
-  // insert source
-  let source = await knex('source')
-    .where({ name: payload.source })
-    .first('id')
-    .then((object) => object.id || null);
-  if (source == null) {
-    source = await knex('source').insert({ name: payload.source }, ['id']);
-  }
+  const brickId = await knex.transaction(async (transaction) => {
+    // get or create source
+    let source = await transaction('source')
+      .where({ name: payload.source })
+      .first<{ id: number }>('id')
+      .then((obj) => obj?.id);
+    if (source == null) {
+      source = await transaction('source')
+        .insert({ name: payload.source })
+        .returning<number[]>('id')
+        .then((ids) => ids[0]);
+    }
 
-  // insert concept
-  let concept = await knex('concept')
-    .where({ name: payload.concept })
-    .first('id')
-    .then((object) => object.id || null);
-  if (concept == null) {
-    concept = await knex('concept').insert({ name: payload.concept }, ['id']);
-  }
-  console.debug({ source, concept });
-  const results = await knex('brick')
-    .insert({
-      concept_id: concept.id,
-      source_id: source.id,
-      content: payload.content,
-      author: user,
-    })
-    .returning('id');
-  return res.success(results);
+    // get or create concept
+    let concept = await transaction('concept')
+      .where({ name: payload.concept })
+      .first<{ id: number }>('id')
+      .then((obj) => obj?.id);
+    if (concept == null) {
+      concept = await transaction('concept')
+        .insert({ name: payload.concept })
+        .returning<number[]>('id')
+        .then((ids) => ids[0]);
+    }
+
+    // get or create brick
+    console.debug({ source, concept });
+    return transaction('brick')
+      .insert({
+        concept_id: concept,
+        source_id: source,
+        content: payload.content,
+        author: user,
+      })
+      .returning<number[]>('id')
+      .then((ids) => ids[0]);
+  });
+
+  return res.success({ brickId });
 };

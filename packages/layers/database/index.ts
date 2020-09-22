@@ -1,4 +1,16 @@
 import knex from 'knex';
-import { DATABASE_CONNECTION } from './constants';
+import sqlParser from 'sql-formatter';
+import chalk from 'chalk';
+import { DATABASE_CONNECTION, isDev } from './constants';
 
-export default knex(DATABASE_CONNECTION);
+const instance = knex(DATABASE_CONNECTION);
+if (isDev) {
+  instance.on('query', ({ sql, bindings }) => {
+    if (sql == null) return;
+    const params = bindings?.map((value: string) => `'${value}'`);
+    const formated = sqlParser.format(sql, { params });
+    console.log(chalk.underline('PostgreSQL request'));
+    console.log(chalk.cyanBright(formated));
+  });
+}
+export default instance;

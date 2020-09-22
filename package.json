@@ -2,6 +2,7 @@
   "name": "root",
   "private": true,
   "scripts": {
+    "dev": "lerna run dev --stream",
     "build": "lerna run build --stream --parallel --since",
     "deploy": "lerna run deploy --stream --parallel --since"
   },
