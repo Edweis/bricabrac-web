@@ -4,12 +4,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/bootstrap-styles.scss';
 import '../styles/global.scss';
 import AuthProvider from '../components/AuthProvider';
+import WithAlerts from '../components/WithAlerts';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <AuthProvider>
-      {/* eslint-disable-next-line */}
+      <WithAlerts>
+        {/* eslint-disable-next-line */}
       <Component {...pageProps} />
+      </WithAlerts>
     </AuthProvider>
   );
 }
