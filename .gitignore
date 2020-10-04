@@ -2,7 +2,7 @@
 !packages/front/.serverless/ # https://github.com/serverless-nextjs/serverless-next.js#cicd-a-new-cloudfront-distribution-is-created-on-every-ci-build-i-wasnt-expecting-that
 .serverless_nextjs
 .webpack
-node_modules
+node_modules/
 lerna-debug.log
 .vscode
 .env
