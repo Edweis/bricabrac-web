@@ -12,12 +12,10 @@
   "dependencies": {
     "@types/lodash.isobject": "^3.0.6",
     "chalk": "^4.1.0",
-    "i": "^0.3.6",
     "knex": "^0.21.5",
     "lodash.camelcase": "^4.3.0",
     "lodash.isobject": "^3.0.2",
     "lodash.mapkeys": "^4.6.0",
-    "npm": "^6.14.8",
     "pg": "^8.3.3",
     "sql-formatter": "^2.3.3"
   },

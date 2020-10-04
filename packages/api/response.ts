@@ -1,6 +1,6 @@
 import Httpnumber from 'http-status-codes';
 
-type JSON = { [key: string]: string | number | Date | JSON } | JSON[];
+type JSON = { [key: string]: string | number | Date | void | JSON } | JSON[];
 type Response = {
   statusCode: number;
   body: string;
