@@ -1,6 +1,6 @@
 {
   "name": "front",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "scripts": {
     "lerna": "next dev",
     "build": "next build",
