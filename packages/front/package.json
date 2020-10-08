@@ -11,9 +11,10 @@
   "dependencies": {
     "@hookform/resolvers": "^0.1.1",
     "@packages/typings": "file:../typings",
+    "@types/react-transition-group": "^4.4.0",
     "aws-amplify": "^3.2.0",
     "axios": "^0.19.2",
-    "bootstrap": "^5.0.0-alpha1",
+    "bootstrap": "^5.0.0-alpha2",
     "classnames": "^2.2.6",
     "date-fns": "^2.16.1",
     "gray-matter": "^4.0.2",
@@ -24,6 +25,7 @@
     "react": "~17.0.0-rc.1",
     "react-dom": "~17.0.0-rc.1",
     "react-hook-form": "^6.8.1",
+    "react-transition-group": "^4.4.1",
     "remark": "^12.0.0",
     "remark-html": "^11.0.1",
     "rxjs": "~7.0.0-beta.7",
@@ -34,6 +36,7 @@
   "devDependencies": {
     "@sls-next/serverless-component": "^1.17.0-alpha.15",
     "@types/aws-lambda": "^8.10.62",
+    "@types/bootstrap": "^5.0.0",
     "@types/classnames": "^2.2.10",
     "@types/js-cookie": "^2.2.6",
     "@types/lodash": "^4.14.161",
