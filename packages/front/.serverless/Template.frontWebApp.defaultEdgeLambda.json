@@ -1,10 +1,10 @@
 {
   "name": "jw50a4d-0ty8l8w",
-  "hash": "+RnByYufzWBJJ25i9ES2Sq4zBMbGgUYF8IjMm0JV5m0=",
+  "hash": "gMOSYYVz7n0x9+qgqxBfYuincuHccTMVxx4bsPOmgxM=",
   "description": "Default Lambda@Edge for Next CloudFront distribution",
   "memory": 512,
   "timeout": 10,
-  "code": "/Users/francoisrulliere/Documents/edweis/bricabrac-web/packages/front/.serverless_nextjs/default-lambda",
+  "code": "/home/eydwales/Documents/edweis/bricabrac-web/packages/front/.serverless_nextjs/default-lambda",
   "shims": [],
   "handler": "index.handler",
   "runtime": "nodejs12.x",
