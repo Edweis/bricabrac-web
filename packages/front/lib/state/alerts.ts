@@ -1,13 +1,15 @@
 import { BootstrapLevels } from '../../types';
 import { StateManager } from './StateManager';
 
-type Alert = { id: number; level: BootstrapLevels; message: string };
+type Alert = {
+  id: number;
+  level: BootstrapLevels;
+  message: string;
+  href?: string;
+};
 type State = { alerts: Alert[] };
 const initState: State = {
-  alerts: [
-    { id: 100, level: 'danger', message: 'Oh no !' },
-    { id: 200, level: 'info', message: 'hello' },
-  ],
+  alerts: [],
 };
 
 class AlertManager extends StateManager<State> {
@@ -22,6 +24,10 @@ class AlertManager extends StateManager<State> {
     this.setState((state) => ({
       alerts: state.alerts.concat({ ...alert, id: this.nextId() }),
     }));
+
+  catch = (error: Error) => {
+    this.push({ level: 'danger', message: error.message });
+  };
 
   close = (alertId: number) =>
     this.setState((state) => ({

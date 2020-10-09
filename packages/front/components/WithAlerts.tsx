@@ -1,26 +1,38 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
+import Link from 'next/link';
 import { useObservable, AlertManager } from '../lib/state';
 import { BootstrapLevels } from '../types';
 import Fade, { fadeDuration } from './transitions/Fade';
 
-type ButtonClick = React.MouseEvent<HTMLButtonElement>;
 type AlertProps = {
   level: BootstrapLevels;
-  children: React.ReactNode;
-  onClick: (event: ButtonClick) => void;
+  onClick: () => void;
+  message: string;
+  href?: string;
 };
-const Alert: FunctionComponent<AlertProps> = (props) => {
+const ALERT_TIMEOUT_MS = 3000;
+const Alert = (props: AlertProps) => {
   // See bootstrap.esm.min.js
   const classes = `alert alert-dismissible  show alert-${props.level}`;
   const [fade, setFade] = useState(false);
-  const onClick = (event: ButtonClick) => {
+  const onClick = () => {
     setFade(true);
-    setTimeout(() => props.onClick(event), fadeDuration);
+    setTimeout(() => props.onClick(), fadeDuration);
   };
+  useEffect(() => {
+    setTimeout(() => onClick(), ALERT_TIMEOUT_MS);
+  }, []);
+  let text = <span>{props.message}</span>;
+  if (props.href != null)
+    text = (
+      <Link href={props.href}>
+        <a>{props.message}</a>
+      </Link>
+    );
   return (
     <Fade in={!fade}>
       <div className={classes} role="alert">
-        {props.children}
+        {text}
         <button
           type="button"
           className="btn-close"
@@ -48,9 +60,9 @@ const WithAlerts: FunctionComponent = (props) => {
             level={alert.level}
             key={alert.id}
             onClick={() => AlertManager.close(alert.id)}
-          >
-            {alert.message}
-          </Alert>
+            message={alert.message}
+            href={alert.href}
+          />
         ))}
       </AlertContainer>
       {props?.children}

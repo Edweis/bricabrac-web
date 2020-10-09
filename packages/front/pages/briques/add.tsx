@@ -9,6 +9,7 @@ import { orderBy } from 'lodash';
 import * as yup from 'yup';
 import ProtectRoute from '../../components/ProtectedRoute';
 import api from '../../services/api';
+import { AlertManager } from '../../lib/state';
 
 type FormData = {
   concept: string;
@@ -32,7 +33,12 @@ function Briques(props: Props) {
   const [loading, setLoading] = useState(false);
   const onSubmit = handleSubmit(async (data) => {
     setLoading(true);
-    await api.post('/brick/add', data).catch(console.error);
+    await api.post('/brick/add', data).catch(AlertManager.catch);
+    AlertManager.push({
+      level: 'success',
+      message: 'Brique added',
+      href: '/briques',
+    });
     setLoading(false);
   });
   return (
@@ -49,6 +55,7 @@ function Briques(props: Props) {
             className={cn('form-control', { 'is-invalid': errors.concept })}
             placeholder="Truth"
             ref={register}
+            autoFocus
           />
           <div className="invalid-feedback">{errors.concept?.message}</div>
         </div>
