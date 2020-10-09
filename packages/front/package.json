@@ -2,7 +2,7 @@
   "name": "front",
   "version": "0.1.5",
   "scripts": {
-    "lerna": "next dev",
+    "dev": "next dev",
     "build": "next build",
     "deploy": "serverless --component frontWebApp --debug && git add . && git commit -m 'Update front/.serverless after deployement'",
     "start": "next start"
@@ -16,7 +16,6 @@
     "bootstrap": "^5.0.0-alpha2",
     "classnames": "^2.2.6",
     "date-fns": "^2.16.1",
-    "gray-matter": "^4.0.2",
     "js-cookie": "^2.2.1",
     "lodash": "^4.17.20",
     "lodash.isequal": "^4.5.0",
@@ -25,8 +24,6 @@
     "react-dom": "~17.0.0-rc.1",
     "react-hook-form": "^6.8.1",
     "react-transition-group": "^4.4.1",
-    "remark": "^12.0.0",
-    "remark-html": "^11.0.1",
     "rxjs": "~7.0.0-beta.7",
     "sass": "^1.26.10",
     "timeago.js": "^4.0.2",

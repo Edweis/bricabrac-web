@@ -11,7 +11,7 @@ type AlertProps = {
 };
 const Alert: FunctionComponent<AlertProps> = (props) => {
   // See bootstrap.esm.min.js
-  const classes = `alert alert-dismissible fade show alert-${props.level}`;
+  const classes = `alert alert-dismissible  show alert-${props.level}`;
   const [fade, setFade] = useState(false);
   const onClick = (event: ButtonClick) => {
     setFade(true);
