@@ -28,6 +28,7 @@ export const signIn = async (email: string, password: string) => {
   if (process.env.IS_DEV) saveLocalToken();
   else {
     const response = await Auth.signIn(email, password);
+    console.debug('signIn', response);
     const token = response.signInUserSession.idToken.jwtToken;
     saveToken(token);
   }
