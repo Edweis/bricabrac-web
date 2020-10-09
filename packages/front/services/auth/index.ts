@@ -14,6 +14,7 @@ const COOKIE_PARAMS: CookieAttributes = {
 };
 
 const saveToken = (token: string) => {
+  console.debug('token saved', token);
   Cookies.set(TOKEN_STORAGE_KEY, token, COOKIE_PARAMS);
   setHeader('Authorization', `Bearer ${token}`);
 };
@@ -28,7 +29,6 @@ export const signIn = async (email: string, password: string) => {
   if (process.env.IS_DEV) saveLocalToken();
   else {
     const response = await Auth.signIn(email, password);
-    console.debug('signIn', response);
     const token = response.signInUserSession.idToken.jwtToken;
     saveToken(token);
   }
@@ -49,6 +49,6 @@ export const getConnectedUser = async () => {
   if (token == null) return null;
   saveToken(token);
   if (process.env.IS_DEV) return token;
-  const { id } = await Auth.currentUserInfo();
-  return id as string;
+  const info = await Auth.currentUserInfo();
+  return info.attributes.email as string;
 };

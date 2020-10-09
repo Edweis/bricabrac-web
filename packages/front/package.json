@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "deploy": "serverless --component frontWebApp --debug && git add . && git commit -m 'Update front/.serverless after deployement'",
+    "deploy": "serverless --component frontWebApp --debug && git add ./serverless/ && git commit -m 'Update front/.serverless after deployement'",
     "start": "next start"
   },
   "dependencies": {

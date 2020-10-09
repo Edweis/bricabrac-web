@@ -1,22 +1,26 @@
-module.exports = function(...args) {
-  let original = require('./next.config.original.1602204373623.js');
-  const finalConfig = {};
-  const target = { target: 'serverless' };
-  if (typeof original === 'function' && original.constructor.name === 'AsyncFunction') {
-    // AsyncFunctions will become promises
-    original = original(...args);
-  }
-  if (original instanceof Promise) {
-    // Special case for promises, as it's currently not supported
-    // and will just error later on
-    return original
-      .then((originalConfig) => Object.assign(finalConfig, originalConfig))
-      .then((config) => Object.assign(config, target));
-  } else if (typeof original === 'function') {
-    Object.assign(finalConfig, original(...args));
-  } else if (typeof original === 'object') {
-    Object.assign(finalConfig, original);
-  }
-  Object.assign(finalConfig, target);
-  return finalConfig;
-}
+/* eslint-disable */
+const {
+  PHASE_DEVELOPMENT_SERVER,
+  PHASE_PRODUCTION_BUILD,
+} = require('next/constants');
+
+module.exports = (phase) => {
+  const env = {
+    // from https://github.com/vercel/next.js/blob/canary/examples/with-env-from-next-config-js/next.config.js
+    IS_DEV: phase === PHASE_DEVELOPMENT_SERVER && false,
+    IS_PROD: phase === PHASE_PRODUCTION_BUILD && process.env.STAGING !== '1',
+    IS_STAGE: phase === PHASE_PRODUCTION_BUILD && process.env.STAGING === '1',
+  };
+  return {
+    env,
+    async redirects() {
+      return [
+        {
+          source: '/',
+          destination: '/account/login',
+          permanent: true,
+        },
+      ];
+    },
+  };
+};
